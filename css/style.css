@@ -17,6 +17,7 @@
 
 :root{
     --bg-py: #1391CEB2;
+    --bg-py-nav: #1390cee7;
     --bg-py-def: #1391CE;
     --bg-sc: #fff;
     --bg-orange: #F7BA0E;
@@ -49,7 +50,10 @@ a{
     width: 100%;
     padding-top: 41px;
 
-    position: absolute;
+    position: fixed;
+    z-index: 98;
+    backdrop-filter: blur(5px);
+    padding-bottom: 30px;
 }
 
 .navbar{
@@ -57,10 +61,17 @@ a{
     align-items: center;
     justify-content: space-between;
 
+    /* overflow-y: hidden; */
+
     /* height: 54px; */
     & i{
         display: none;
         font-size: 30px;
+        cursor: pointer;
+
+        &:focus ~ .navbar_collection2{
+            transform: translateY(0px);
+        }
     }
 }
 
@@ -102,6 +113,61 @@ a{
         border: none;
         border-radius: 24px;
         font-size: 16px;
+        font-weight: 500;
+        transition: .2s ease-in-out;
+
+        outline: 2px solid var(--bg-py);
+
+        &:hover{
+            background-color: var(--bg-py-def);
+            outline: 2px solid var(--bg-sc);
+            color: var(--text-sc);
+        }
+    }
+}
+
+.navbar_collection2{
+    list-style: none;
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: fixed;
+    transition: .2s ease-in-out;
+    max-width: 100%;
+    width: 100%;
+    height: 300px;
+    left: 0;
+    top: 0;
+    z-index: 99;
+
+    transform: translateY(-100%);
+
+
+    /* background-color: #5ab2dd; */
+    background-color: var(--bg-py-nav);
+    border-bottom: 1px solid black;
+    backdrop-filter: blur(5px);
+
+    & li{
+        color: var(--text-pr);
+        font-weight: 500;
+        line-height: 18.75px;
+        transition: .2s ease-in-out;
+        font-size: 20px;
+
+        &:hover{
+            color: var(--text-sc);
+        }
+    }
+    & li:last-child a button{
+        cursor: pointer;
+        background-color: var(--bg-sc); 
+        padding: 9px 18px 9px 18px;
+        border: none;
+        border-radius: 24px;
+        font-size: 18px;
         font-weight: 500;
         transition: .2s ease-in-out;
 
@@ -281,6 +347,7 @@ a{
     display: flex;
     flex-direction: column;
     gap: 128px;
+    transform-origin: 50% 70%;
 }
 
 .feature{
@@ -398,6 +465,8 @@ footer{
     background-color: var(--bg-py-def);
     margin-top: 64px;
 
+    overflow: hidden;
+
     & .container{
         padding-block: 32px 58px;
     }
@@ -445,13 +514,15 @@ footer{
 
 
 
-
+html, body {
+    overflow-x: hidden;
+}
 
 
 
 @media (max-width : 1250px) {
     .navbar{
-        & ul{
+        & .navbar_collection{
             display: none;
         }
         & i{
@@ -629,15 +700,297 @@ footer{
     }
 }
 
-@media (max-width <= 560px) {
-        .container{
-            padding-inline: 0 !important;
-            padding-block: 0 !important;
+@media (max-width: 560px) {
+    .container {
+        padding-inline: 0 !important;
+    }
+    
+    .hero {
+        padding-bottom: 0;
+
+        & .hero_content {
+            margin-top: -160px;
+            transform: scale(65%);
         }
+    }
+
+    .benefits {
+        padding-block: 40px;
+
+        & .benefits_wrapper {
+            transform: scale(70%);
+        }
+    }
+
+    .features_wrapper {
+        margin-top: -395px;
+        transform: scale(70%);
+
+        .feature_text {
+            transform: scale(110%);
+        }
+    }
+
+    footer, .navbar, .hero, .benefits, .features_wrapper {
+        overflow: hidden;
+    }
+
+    footer{
+        & .container{
+            margin-inline: 70px;
+
+            & .footer_content{
+                & p{
+                    text-align: center;
+                }
+            }
+        }
+    }
 }
 
+@media (max-width: 500px) {
+    .navbar {
+        padding-inline: 40px;
+    }
+    
+    .hero {
+        padding-top: 150px;
+        padding-bottom: 0;
 
+        & .hero_content {
+            margin-top: -120px;
+            transform: scale(70%);
+        }
+    }
 
-*{
-    outline: 1px solid red;
+    .benefits {
+        padding-block: 30px;
+
+        & .benefits_wrapper {
+            flex-direction: column;
+            transform: scale(70%);
+        }
+    }
+
+    .features_wrapper {
+        margin-top: -750px;
+        transform: scale(60%);
+
+        & .feature_text {
+            transform: scale(110%);
+        }
+    }
+
+    footer {
+        & .footer_content {
+            margin-bottom: 0;
+        }
+
+        & .container {
+            margin-inline: 40px;
+        }
+    }
+}
+
+@media (max-width: 460px) {
+    .navbar {
+        padding-inline: 30px;
+    }
+    
+    .hero {
+        padding-top: 120px;
+        padding-bottom: 0;
+
+        & .hero_content {
+            margin-top: -100px;
+            transform: scale(70%);
+        }
+    }
+
+    .benefits {
+        padding-block: 20px;
+
+        & .benefits_wrapper {
+            flex-direction: column;
+            transform: scale(65%);
+        }
+    }
+
+    .features_wrapper {
+        margin-top: -1000px;
+        transform: scale(55%);
+        transform-origin: 50% 80%;
+
+        .feature_text {
+            transform: scale(95%);
+        }
+    }
+
+    footer {
+        & .container {
+            margin-inline: 40px;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .navbar {
+        padding-inline: 20px;
+    }
+    
+    .hero {
+        padding-top: 100px;
+        padding-bottom: 0;
+
+        & .hero_content {
+            margin-top: -80px;
+            transform: scale(60%);
+        }
+    }
+
+    .benefits {
+        padding-block: 15px;
+
+        & .benefits_wrapper {
+            flex-direction: column;
+            transform: scale(60%);
+        }
+    }
+
+    .features_wrapper {
+        margin-top: -1100px;
+        transform: scale(50%);
+        transform-origin: 50% 80%;
+
+        .feature_text {
+            transform: scale(110%);
+        }
+    }
+
+    footer {
+        & .container {
+            margin-inline: 30px;
+        }
+    }
+}
+
+@media (max-width: 360px) {
+    .navbar {
+        padding-inline: 15px;
+    }
+    
+    .hero {
+        padding-top: 80px;
+        padding-bottom: 0;
+
+        & .hero_content {
+            margin-top: -60px;
+            transform: scale(50%);
+        }
+    }
+
+    .benefits {
+        padding-block: 10px;
+
+        & .benefits_wrapper {
+            flex-direction: column;
+            transform: scale(55%);
+        }
+    }
+
+    .features_wrapper {
+        margin-top: -1350px;
+        transform: scale(45%);
+        transform-origin: 50% 85%;
+
+        & .feature_text {
+            transform: scale(110%);
+        }
+    }
+
+    footer {
+        & .container {
+            margin-inline: 20px;
+        }
+    }
+}
+
+@media (max-width: 300px) {
+    .navbar {
+        padding-inline: 10px;
+    }
+    
+    .hero {
+        padding-top: 0;
+        padding-bottom: 0px;
+
+        & .hero_content {
+            margin-top: -40px;
+            /* transform: scale(45%); */
+            flex-direction: column-reverse;
+
+            & h3{
+                font-size: 36px;
+            }
+
+            & p{
+                font-size: 33px;
+                line-height: 36px;
+            }
+
+            & button{
+                padding: 25px 62.26px;
+                font-size: 28px;
+            }
+        }
+    }
+
+    .benefits {
+        padding-block: 5px;
+
+        & .benefits_wrapper {
+            flex-direction: column;
+            transform: scale(50%);
+
+            & .benefit{
+                font-size: 28px;
+            }
+        }
+    }
+
+    .features{
+        & .title{
+            font-size: 28px;
+            max-width: 250px;
+        }
+    }
+
+    .features_wrapper {
+        margin-top: -1450px;
+        transform: scale(45%);
+
+        .feature{
+            overflow-y: scroll;
+            overflow-x: hidden;
+            gap: 100px;
+        }
+
+        & .feature_img{
+            transform: scale(120%);
+        }
+        & .feature_text {
+            transform: scale(120%);
+            padding-bottom: 20px;
+
+            & ul li{
+                /* font-size: 22px; */
+            }
+        }
+    }
+
+    footer {
+        & .container {
+            margin-inline: 10px;
+        }
+    }
 }
